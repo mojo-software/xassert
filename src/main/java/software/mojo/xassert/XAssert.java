@@ -296,26 +296,164 @@ public class XAssert {
   //
 
   // Zero
-  public static void isZero(Number n) {
-    isTrue(isZeroValue(n), XAssertMessage.NOT_ZERO.message);
+
+  /**
+   * Returns if the number is 0, otherwise a {@code RuntimeException} is thrown with a generic
+   * message indicating that the number is not 0.
+   *
+   * @param num
+   *        The number being evaluated
+   */
+  public static void isZero(Number num) {
+    isTrue(isZeroValue(num), XAssertMessage.NOT_ZERO.message);
   }
-  public static void isZero(Number n, String error) {
-    isTrue(isZeroValue(n), error);
+
+  /**
+   * Returns if the number is 0, otherwise a {@code RuntimeException} is thrown with the error
+   * message.
+   *
+   * @param num
+   *        The number being evaluated
+   * @param error
+   *        The error message to be added to the {@code RuntimeException}
+   */
+  public static void isZero(Number num, String error) {
+    isTrue(isZeroValue(num), error);
   }
-  public static void isZero(Number n, RuntimeException ex) {
-    isTrue(isZeroValue(n), ex);
+
+  /**
+   * Returns if the number is 0, otherwise the {@code RuntimeException} is thrown.
+   *
+   * @param num
+   *        The number being evaluated
+   * @param throwable
+   *        The {@code RuntimeException} that will be thrown
+   */
+  public static void isZero(Number num, RuntimeException throwable) {
+    isTrue(isZeroValue(num), throwable);
   }
 
   // Not zero
-  public static void isNotZero(Number n) {
-    isTrue(!isZeroValue(n), XAssertMessage.ZERO.message);
+
+  /**
+   * Returns if the number is not 0, otherwise a {@code RuntimeException} is thrown with a generic
+   * message indicating that the number is not 0.
+   *
+   * @param num
+   *        The number being evaluated
+   */
+  public static void isNotZero(Number num) {
+    isTrue(!isZeroValue(num), XAssertMessage.ZERO.message);
   }
-  public static void isNotZero(Number n, String error) {
-    isTrue(!isZeroValue(n), error);
+
+  /**
+   * Returns if the number is not 0, otherwise a {@code RuntimeException} is thrown with the error
+   * message.
+   *
+   * @param num
+   *        The number being evaluated
+   * @param error
+   *        The error message to be added to the {@code RuntimeException}
+   */
+  public static void isNotZero(Number num, String error) {
+    isTrue(!isZeroValue(num), error);
   }
-  public static void isNotZero(Number n, RuntimeException ex) {
-    isTrue(!isZeroValue(n), ex);
+
+  /**
+   * Returns if the number is not 0, otherwise the {@code RuntimeException} is thrown.
+   *
+   * @param num
+   *        The number being evaluated
+   * @param throwable
+   *        The {@code RuntimeException} that will be thrown
+   */
+  public static void isNotZero(Number num, RuntimeException throwable) {
+    isTrue(!isZeroValue(num), throwable);
   }
+
+  //
+  // String
+  //
+
+  // Empty
+
+  /**
+   * Returns if the string is empty, otherwise a {@code RuntimeException} is thrown with a generic
+   * message indicating that the string is empty.
+   *
+   * @param str
+   *        The string being evaluated
+   */
+  public static void isEmptyString(String str) {
+    isTrue(str.isEmpty(), XAssertMessage.NOT_EMPTY_STRING.message);
+  }
+
+  /**
+   * Returns if the string is empty, otherwise a {@code RuntimeException} is thrown with the error
+   * message.
+   *
+   * @param str
+   *        The string being evaluated
+   * @param error
+   *        The error message to be added to the {@code RuntimeException}
+   */
+  public static void isEmptyString(String str, String error) {
+    isTrue(str.isEmpty(), error);
+  }
+
+  /**
+   * Returns if the string is empty, otherwise the {@code RuntimeException} is thrown.
+   *
+   * @param str
+   *        The string being evaluated
+   * @param throwable
+   *        The {@code RuntimeException} that will be thrown
+   */
+  public static void isEmptyString(String str, RuntimeException throwable) {
+    isTrue(str.isEmpty(), throwable);
+  }
+
+  // Not empty
+
+  /**
+   * Returns if the string is not empty, otherwise a {@code RuntimeException} is thrown with a generic
+   * message indicating that the string is empty.
+   *
+   * @param str
+   *        The string being evaluated
+   */
+  public static void isNotEmptyString(String str) {
+    isTrue(!str.isEmpty(), XAssertMessage.EMPTY_STRING.message);
+  }
+
+  /**
+   * Returns if the string is not empty, otherwise a {@code RuntimeException} is thrown with the error
+   * message.
+   *
+   * @param str
+   *        The string being evaluated
+   * @param error
+   *        The error message to be added to the {@code RuntimeException}
+   */
+  public static void isNotEmptyString(String str, String error) {
+    isTrue(!str.isEmpty(), error);
+  }
+
+  /**
+   * Returns if the string is not empty, otherwise the {@code RuntimeException} is thrown.
+   *
+   * @param str
+   *        The string being evaluated
+   * @param throwable
+   *        The {@code RuntimeException} that will be thrown
+   */
+  public static void isNotEmptyString(String str, RuntimeException throwable) {
+    isTrue(!str.isEmpty(), throwable);
+  }
+
+  //
+  // private
+  //
 
   private static boolean isZeroValue(Number n) {
     return (
@@ -326,36 +464,6 @@ public class XAssert {
                         n.floatValue() == 0
     );
   }
-
-  //
-  // String
-  //
-
-  // Empty
-  public static void isEmptyString(String s) {
-    isTrue(s.isEmpty(), XAssertMessage.NOT_EMPTY_STRING.message);
-  }
-  public static void isEmptyString(String s, String error) {
-    isTrue(s.isEmpty(), error);
-  }
-  public static void isEmptyString(String s, RuntimeException ex) {
-    isTrue(s.isEmpty(), ex);
-  }
-
-  // Not empty
-  public static void isNotEmptyString(String s) {
-    isTrue(!s.isEmpty(), XAssertMessage.EMPTY_STRING.message);
-  }
-  public static void isNotEmptyString(String s, String error) {
-    isTrue(!s.isEmpty(), error);
-  }
-  public static void isNotEmptyString(String s, RuntimeException ex) {
-    isTrue(!s.isEmpty(), ex);
-  }
-
-  //
-  // private
-  //
 
   private enum XAssertMessage {
     IS_FALSE("expression is false"),
