@@ -1,21 +1,56 @@
 # XAssert
 Helper class for replacing if-statements that throw a RuntimeException.
-## Example
-Old code:
+
+## Supported Assertions
+|Assertion|Parameter(s) Type|
+|---|---|
+|isTrue, isFalse|boolean|
+|isEqual, isNotEqual|Object|
+|isNull, isNotNull|Object|
+|isZero, isNotZero|Number|
+|isEmptyString, isNotEmptyString|String|
+
+## Examples
+### Null Check (simple) throws RuntimeException
+Java:
 ```
 if (obj == null) {
-  throw new RuntimeException("Object cannot be null");
-}
-if (obj == obj2) {
-  throw new RuntimeException("Object cannot be the same");
-}
-if (obj.getCount() != 0) {
-  throw new RuntimeException("Count must be zero");
+  throw new RuntimeException();
 }
 ```
-New code:
+XAssert replacement:
 ```
-XAssert.isNotNull(obj, new RuntimeException("Object cannot be null");
-XAssert.isNotEqual(obj2, obj, new RuntimeException("Object cannot be the same");
-XAssert.isZero(obj.getCount(), new RuntimeException("Count must be zero");
+XAssert.isNotNull(obj);
+```
+Log output:
+```
+XAssert: null value
+```
+
+### Null Check (custom message) throws RuntimeException
+Java:
+```
+if (obj == null) {
+  throw new RuntimeException("obj cannot be null");
+}
+```
+XAssert replacement:
+```
+XAssert.isNotNull(obj, "obj cannot be null");
+```
+Log output:
+```
+obj cannot be null
+```
+
+### Null Check (custom exception)
+Java:
+```
+if (obj == null) {
+  throw new MyCutsomRuntimeException("obj cannot be null");
+}
+```
+XAssert replacement:
+```
+XAssert.isNotNull(obj, new MyCustomRuntimeException("obj cannot be null"));
 ```
